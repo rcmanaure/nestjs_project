@@ -1,4 +1,4 @@
-FROM node:14.15.1
+FROM node:12
 
 # Create app directory
 WORKDIR /ruben/src/app
