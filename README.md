@@ -29,8 +29,8 @@
 # Start Commands for docker-compose file
 Builds, (re)creates, starts, and attaches to containers for a service.
 
-`docker-compose up`
-`docker-compose up -d` detach mode
+$ `docker-compose up`
+$ `docker-compose up -d` detach mode
 ## Running the app
 
 ```bash
