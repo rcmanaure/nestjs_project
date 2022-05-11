@@ -1,21 +1,19 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { get } from 'http';
 import { Observable } from 'rxjs';
 import { UserI } from '../models/user.interface';
 import { UserService } from '../service/user.service';
 
 @Controller('users')
 export class UserController {
+  constructor(private userService: UserService) {}
 
-    constructor(private userService: UserService) {}
+  @Post()
+  add(@Body() user: UserI): Observable<UserI> {
+    return this.userService.add(user);
+  }
 
-    @Post()
-    add(@Body() user: UserI): Observable<UserI>{
-        return this.userService.add(user);
-    }
-
-    @Get()
-    findAll(): Observable<UserI[]> {
-        return this.userService.findAll();
-    }
+  @Get()
+  findAll(): Observable<UserI[]> {
+    return this.userService.findAll();
+  }
 }
