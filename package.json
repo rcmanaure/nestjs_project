@@ -29,6 +29,7 @@
     "@nestjs/typeorm": "^7.1.5",
     "dotenv": "^16.0.1",
     "download": "^8.0.0",
+    "fast-csv": "^4.3.6",
     "googleapis": "^39.2.0",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",

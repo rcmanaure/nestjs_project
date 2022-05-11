@@ -10,8 +10,10 @@ services:
             DATABASE_URL: "postgres://user:password@postgres:5432/db"
             NODE_ENV: development
             PORT: 3000
+            NODE_OPTIONS: --max_old_space_size=8048
         ports:
             - "8090:3000"
+        restart: on-failure  
 
     postgres:
         image: postgres:14-alpine
@@ -21,6 +23,8 @@ services:
             POSTGRES_USER: user
             POSTGRES_PASSWORD: password
             POSTGRES_DB: db
+        restart: on-failure  
+
 
             
 

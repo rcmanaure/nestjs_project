@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -14,6 +14,14 @@ export class AppController {
   getCodes(): any {
     return this.appService.getCodes();
   }
+
+  @Post('/csv')
+  loadCsv(): any {
+    return this.appService.loadCsv();
+  }
 }
+
+
+
 
 

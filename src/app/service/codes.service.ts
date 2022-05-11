@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { Repository } from 'typeorm';
-import { PostCodeEntity } from '../models/codes.entity';
+import { CodeEntity } from '../models/codes.entity';
 import { CodesI } from '../models/codes.interface';
 
 @Injectable()
 export class CodeService {
   constructor(
-    @InjectRepository(PostCodeEntity)
-    private codesRepository: Repository<PostCodeEntity>,
+    @InjectRepository(CodeEntity)
+    private codesRepository: Repository<CodeEntity>,
   ) {}
 
   add(codes: CodesI): Observable<CodesI> {

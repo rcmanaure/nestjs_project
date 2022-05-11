@@ -2,13 +2,13 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 // Modelado de la base de datos
 @Entity()
-export class PostCodeEntity {
+export class CodeEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  lat: number;
+  lat: string;
 
   @Column()
-  lon: number;
+  lon: string;
 }
