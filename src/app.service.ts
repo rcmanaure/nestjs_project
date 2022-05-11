@@ -1,5 +1,7 @@
-import { HttpService, Injectable } from '@nestjs/common';
+import { HttpService, Injectable, Res } from '@nestjs/common';
+import { drive } from 'googleapis/build/src/apis/drive'
 import {map} from 'rxjs/operators';
+ 
 @Injectable()
 export class AppService {
   constructor(private httpService:HttpService) {}
@@ -15,19 +17,27 @@ export class AppService {
     )
   }
 
-  getCodes(): any {
-  const download = require('download');
+  getCodes():any {
+ 
+    const {google} = require('googleapis');   
+    const drive = google.drive();
 
-  // Url of the image
-  const url = 'https://drive.google.com/file/d/1M6fWgTPCcAq6hBM_C83tDQROPvHj697N';
-  // Path at which image will get downloaded
-  const filePath = `${__dirname}/files`;
+    const fs = require('fs');
+    var fileId = '1M6fWgTPCcAq6hBM_C83tDQROPvHj697N';
+    var dest = fs.createWriteStream('/tmp/code.csv');
+    drive.files.get({
+      fileId: fileId,
+      alt: 'media'
+    })
+        .on('end', function () {
+          console.log('Done');
+        })
+        .on('error', function (err) {
+          console.log('Error during download', err);
+        })
+        .pipe(dest);
+    
+  }
 
-  download(url,filePath)
-  .then(() => {
-    console.log('Download Completed');
-  })
-
-      // return test;
-    }
+   
 }
