@@ -26,11 +26,6 @@
 
 [Nest](https://nestjs.com/) framework.
 
-## Installation
-
-```bash
-$ npm install
-```
 # Start Commands for docker-compose file
 Builds, (re)creates, starts, and attaches to containers for a service.
 
