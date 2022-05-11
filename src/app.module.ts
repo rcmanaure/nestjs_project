@@ -1,9 +1,11 @@
-import { Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CodesModule } from './user/code.module';
 import { UserModule } from './user/user.module';
+
 
 @Module({
   imports: [
@@ -17,6 +19,8 @@ import { UserModule } from './user/user.module';
       synchronize: true,
     }),
     UserModule,
+    CodesModule,
+    HttpModule
   ],
   controllers: [AppController],
   providers: [AppService],
