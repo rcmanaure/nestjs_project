@@ -63,7 +63,7 @@ export class CodeService {
     return codes;
   }
 
-  // Get nearest postcodes for a given longitude & latitude and save it in the DB.
+  // Get nearest postcodes for a given longitude & latitude in UK and save it in the DB.
   getPostCodes(params): any {
     const lon = params.lon;
     const lat = params.lat;
