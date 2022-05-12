@@ -32,7 +32,7 @@ Builds, (re)creates, starts, and attaches to containers for a service.
 $ docker-compose up
 
 ```
-## Using the app
+## Using the API
 
 ```bash
 
