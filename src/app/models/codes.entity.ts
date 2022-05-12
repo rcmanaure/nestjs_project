@@ -12,6 +12,7 @@ export class CodeEntity {
   @Column({ nullable: true })
   lon: string;
 
-  @Column({ nullable: true })
-  nearest_postcodes: string;
+  @Column("text", {array:true, nullable:true})
+  nearest_postcodes: string[];
+
 }

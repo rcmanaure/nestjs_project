@@ -25,10 +25,16 @@ export class CodesController {
     return this.codesService.getRandomCode();
   }
 
-    // Get all coords.
-    @Get('/postcodes/:lon/:lat')
+    // Get all coords and save it in the DB.
+    @Get('/nearest-codes/:lon/:lat')
     getPostCodes(@Param() params:string): object{
       return this.codesService.getPostCodes(params);
+    }
+
+    // Get all coords.
+    @Get('/postcodes/:lon/:lat')
+    getNearestCodes(@Param() params:string): object{
+      return this.codesService.getNearestCodes(params);
     }
 
   // Download file.
