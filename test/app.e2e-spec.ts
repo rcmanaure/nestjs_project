@@ -20,12 +20,11 @@ describe('AppController (e2e)', () => {
   });
 
   describe('Testing 1', () => {
-  it('/ (GET) should return https://postcodes.io', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('https://postcodes.io');
+    it('/ (GET) should return https://postcodes.io', () => {
+      return request(app.getHttpServer())
+        .get('/')
+        .expect(200)
+        .expect('https://postcodes.io');
+    });
   });
-});
-
 });

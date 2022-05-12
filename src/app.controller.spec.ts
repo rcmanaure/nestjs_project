@@ -3,11 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 describe('AppController', () => {
-  let appController: AppController; 
-  
+  let appController: AppController;
+
   const mockData = {
-    "status": 200,
-    "result": 'postocodes',
+    status: 200,
+    result: 'postocodes',
   };
 
   beforeEach(async () => {
@@ -34,9 +34,9 @@ describe('AppController', () => {
   describe('Testing 2', () => {
     it('should return mockData', () => {
       expect(mockData).toStrictEqual({
-    "status": 200,
-    "result": 'postocodes',
-  });
+        status: 200,
+        result: 'postocodes',
+      });
     });
   });
 });

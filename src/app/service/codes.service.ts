@@ -27,7 +27,8 @@ export class CodeService {
 
   // Get a random code.
   getRandomCode(): any {
-    return this.httpService
+    // Using the API of postcodes.io.
+    const codes =this.httpService
       .get('https://api.postcodes.io/random/postcodes')
       .pipe(
         map((response) => response.data),
@@ -40,10 +41,13 @@ export class CodeService {
           latitude: data.result['latitude'],
         })),
       );
+       // Returning only the status,postcode,longitude,latitude, country and region.
+      return codes;
   }
 
   // Get nearest postcodes for a given longitude & latitude.
   getNearestCodes(params): any {
+    // Using the API of postcodes.io.
     const codes = this.httpService
       .get(
         `https://api.postcodes.io/postcodes?lon=${params.lon}&lat=${params.lat}`,
@@ -55,6 +59,7 @@ export class CodeService {
           postcode: data.result.map((x) => [x.postcode, x.country, x.region]),
         })),
       );
+      // Returning only the postcode, country and region.
     return codes;
   }
 
@@ -62,7 +67,7 @@ export class CodeService {
   getPostCodes(params): any {
     const lon = params.lon;
     const lat = params.lat;
-
+    // Using the API of postcodes.io.
     const codes = this.httpService
       .get(`https://api.postcodes.io/postcodes?lon=${lon}&lat=${lat}`)
       .pipe(
@@ -72,13 +77,15 @@ export class CodeService {
           postcode: data.result,
         })),
       );
+      // Update the nearest_postcodes by lat and lon.
     codes.forEach((value) => {
       const propertyValues = value.postcode.map((x) => x.postcode);
       const query = `UPDATE code_entity SET nearest_postcodes=ARRAY['${propertyValues}'] WHERE lat='${lat}' and lon='${lon}';`;
-
+      // Connect to DB.
       pool.connect((err, client, done) => {
         if (err) throw err;
         try {
+          // Updating in the DB.
           client.query(query, (err, res) => {
             if (err) {
               console.log(err.stack);
@@ -86,12 +93,13 @@ export class CodeService {
           });
         } finally {
           done();
-          console.log('Succesful added nearest postcodes to DB by given longitude and latitude.');          
+          console.log(
+            'Succesful added nearest postcodes to DB by given longitude and latitude.',
+          );
         }
-      });      
+      });
     });
     return codes;
-    
   }
 
   // // Download file.
@@ -127,8 +135,9 @@ export class CodeService {
       .on('end', function () {
         // remove the first line: header
         csvData.shift();
-
+        // Insert the data of CSV file.
         const query = 'INSERT INTO code_entity ( lat, lon) VALUES ($1, $2)';
+        // Connect to DB 
         pool.connect((err, client, done) => {
           if (err) throw err;
           try {
@@ -143,6 +152,7 @@ export class CodeService {
                 );
                 row.push('0');
               }
+              // Inserting the data.
               client.query(query, row, (err, res) => {
                 if (err) {
                   console.log(err.stack);
