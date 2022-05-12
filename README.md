@@ -36,12 +36,30 @@ $ docker-compose up
 
 ```bash
 
-# In the browser go to:
-$ localhost:8090 to get the welcome page.
-$ localhost:8090/random-code to get a random code.
-$ localhost:8090/csv to load the CSV file to DB.
+# In the browser or postman go to:
 
+# To get the welcome page.
+$ localhost:8090 
+
+# Get all nearest postcodes by given longitude and latitude.
+# example: localhost:8090/codes/postcodes/-2.262773/53.457321
+$ localhost:8090/codes/postcodes/:lon/:lat 
+
+# To get a random code.
+$ localhost:8090/codes/random-code 
+
+# To load the CSV file to DB.
+$ localhost:8090/codes/csv 
+
+# Get all nearest postcodes and save it in the DB.
+# example: localhost:8090/codes/nearest-codes/-2.262773/53.457321
+$ localhost:8090/codes/nearest-codes/:lon/:lat 
+
+# Get all coords and nearest post codes in DB.
+$ localhost:8090/codes/coords 
 ```
+
+
 ## Running the app
 
 ```bash
