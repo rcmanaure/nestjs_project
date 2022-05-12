@@ -1,19 +1,45 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { CodesI } from '../models/codes.interface';
+import { CodesI, PostCodesI } from '../models/codes.interface';
 import { CodeService } from '../service/codes.service';
 
 @Controller('codes')
 export class CodesController {
   constructor(private codesService: CodeService) {}
 
-  @Post()
-  add(@Body() codes: CodesI): Observable<CodesI> {
+  // Add post code.
+  @Post('/add-code')
+  add(@Body() codes: PostCodesI): Observable<PostCodesI> {
     return this.codesService.add(codes);
   }
 
-  @Get()
+  // Get all coords.
+  @Get('/coords')
   findAll(): Observable<CodesI[]> {
     return this.codesService.findAll();
+  }
+
+  // Get a random code.
+  @Get('/random-code')
+  getRandomCode(): object {
+    return this.codesService.getRandomCode();
+  }
+
+    // Get all coords.
+    @Get('/postcodes/:lon/:lat')
+    getPostCodes(@Param() params:string): object{
+      return this.codesService.getPostCodes(params);
+    }
+
+  // Download file.
+  @Get('/file')
+  getCodes(): any {
+    return this.codesService.getCodes();
+  }
+
+  // Load CSV file to DB.
+  @Get('/csv')
+  loadCsv(): any {
+    return this.codesService.loadCsv();
   }
 }

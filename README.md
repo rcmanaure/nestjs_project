@@ -30,7 +30,17 @@
 Builds, (re)creates, starts, and attaches to containers for a service.
 ```bash
 $ docker-compose up
-$ docker-compose up -d  'detach mode'
+
+```
+## Using the app
+
+```bash
+
+# In the browser go to:
+$ localhost:8090 to get the welcome page.
+$ localhost:8090/random-code to get a random code.
+$ localhost:8090/csv to load the CSV file to DB.
+
 ```
 ## Running the app
 

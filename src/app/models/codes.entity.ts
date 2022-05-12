@@ -6,9 +6,12 @@ export class CodeEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   lat: string;
 
-  @Column()
+  @Column({ nullable: true })
   lon: string;
+
+  @Column({ nullable: true })
+  nearest_postcodes: string;
 }

@@ -11,6 +11,10 @@ services:
             NODE_ENV: development
             PORT: 3000
             NODE_OPTIONS: --max_old_space_size=8048
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: db
+            POSTGRES_PORT: 5432
         ports:
             - "8090:3000"
         restart: on-failure  
@@ -18,7 +22,7 @@ services:
     postgres:
         image: postgres:14-alpine
         ports:
-            - "3500:5432"
+            - "5432:5432"
         environment: 
             POSTGRES_USER: user
             POSTGRES_PASSWORD: password
